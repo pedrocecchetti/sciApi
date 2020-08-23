@@ -23,7 +23,8 @@ async def index():
 
 @app.get("/scientist/{first_name}", response_model=schema.Scientist)
 async def read_scientist_by_first_name(first_name: str, db: Session = Depends(get_db)):
-    scientist = crud.get_scientist_by_first_name(db, first_name=first_name)
+    treated_first_name = first_name.lower().capitalize()
+    scientist = crud.get_scientist_by_first_name(db, first_name=treated_first_name  )
     if scientist is None:
         raise HTTPException(status_code=404, detail="Scientist Not Found!")
     return scientist
