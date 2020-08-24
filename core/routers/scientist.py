@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from ..database.db import SessionLocal
-from ..database import crud, schema
+from ..database.scientist import crud, schema
 
 router = APIRouter()
 
@@ -23,10 +23,10 @@ async def read_scientists(db: Session = Depends(get_db)):
     return crud.get_scientists(db)
 
 
-@router.get("/{first_name}", response_model=schema.Scientist)
-async def read_scientist_by_first_name(first_name: str, db: Session = Depends(get_db)):
-    treated_first_name = first_name.lower().capitalize()
-    scientist = crud.get_scientist_by_first_name(db, first_name=treated_first_name)
+@router.get("/{name}", response_model=schema.Scientist)
+async def read_scientist_by_first_name(name: str, db: Session = Depends(get_db)):
+    treated_name = name.lower().capitalize()
+    scientist = crud.get_scientist_by_name(db, name=treated_name)
     if scientist is None:
         raise HTTPException(status_code=404, detail="Scientist Not Found!")
     return scientist

@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from . import models, schema
+from . import schema
+from .scientist import models
 
 
 def get_scientist(db: Session, scientist_id: int):

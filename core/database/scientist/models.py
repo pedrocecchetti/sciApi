@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, DateTime, Integer, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
-from .db import Base
+from core.database.db import Base
 
 
 class Scientist(Base):
