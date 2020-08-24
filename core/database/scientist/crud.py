@@ -1,14 +1,16 @@
 from sqlalchemy.orm import Session
-from . import schema
-from .scientist import models
+from core.database.scientist import models, schema
 
 
 def get_scientist(db: Session, scientist_id: int):
     return db.query(models.Scientist).filter(models.Scientist.id == scientist_id).first()
 
 
-def get_scientist_by_first_name(db: Session, first_name: str):
-    return db.query(models.Scientist).filter(models.Scientist.first_name == first_name).first()
+def get_scientist_by_name(db: Session, name: str):
+    if scientist := db.query(models.Scientist).filter(models.Scientist.first_name == name).first():
+        return scientist
+    else:
+        return db.query(models.Scientist).filter(models.Scientist.last_name == name).first()
 
 
 def get_scientist_by_full_name(db: Session, full_name: str):
