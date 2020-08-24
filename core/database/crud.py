@@ -14,7 +14,7 @@ def get_scientist_by_full_name(db: Session, full_name: str):
     return db.query(models.Scientist).filter(models.Scientist.full_name == full_name).first()
 
 
-def get_scientists(db: Session, skip: int = 0, limit: int = 0):
+def get_scientists(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.Scientist).offset(skip).limit(limit).all()
 
 
@@ -29,5 +29,5 @@ def create_scientist(db: Session, scientist: schema.ScientistCreate):
     )
     db.add(db_scientist)
     db.commit()
-    db.refresh(models.Scientist)
+    db.refresh(db_scientist)
     return db_scientist
