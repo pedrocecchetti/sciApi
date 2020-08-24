@@ -1,10 +1,6 @@
-from fastapi import FastAPI, Depends, HTTPException
-from typing import List
-from sqlalchemy.orm import Session
-
-from .database import crud, schema
+from fastapi import FastAPI
 from .database.db import SessionLocal
-from .routers.scientists import router
+from .routers.scientist import router
 
 app = FastAPI()
 
