@@ -1,16 +1,16 @@
 [[source]]
+name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-name = "pypi"
+
+[dev-packages]
 
 [packages]
-fastapi = "*"
-sqlalchemy = "*"
+fastapi = {extras = ["all"], version = "*"}
 psycopg2-binary = "*"
 alembic = "*"
+pipenv = "*"
+SQLAlchemy = "*"
 
 [requires]
 python_version = "3.7"
-
-[pipenv]
-allow_prereleases = true
