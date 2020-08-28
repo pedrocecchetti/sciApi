@@ -9,7 +9,6 @@ verify_ssl = true
 fastapi = {extras = ["all"], version = "*"}
 psycopg2-binary = "*"
 alembic = "*"
-pipenv = "*"
 SQLAlchemy = "*"
 
 [requires]
